@@ -1,4 +1,4 @@
-# AI Sales Agent 🤖
+# AI Sales Agent 
 
 An AI-powered cold calling sales platform that holds real-time voice conversations with customers, handles objections, closes sales, and logs everything to a dashboard.
 
