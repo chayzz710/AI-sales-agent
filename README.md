@@ -1,4 +1,4 @@
-# AI Sales Agent 🤖
+# AI Sales Agent 
 
 An AI-powered cold calling sales platform that holds real-time voice conversations with customers, handles objections, closes sales, and logs everything to a dashboard.
 
@@ -28,31 +28,31 @@ The agent (Alex) calls customers, pitches products, listens to responses, handle
 - Call logs with transcript viewer
 
 ## Project Structure
-sales-ai/
-├── backend/
-│   ├── main.py              # FastAPI entry point
-│   ├── database.py          # MongoDB connection
-│   ├── models.py            # Pydantic schemas
-│   ├── agent.py             # Groq conversation logic
-│   ├── seed.py              # Demo data seeder
-│   └── routes/
-│       ├── products.py      # Product CRUD
-│       ├── customers.py     # Customer CRUD
-│       ├── calls.py         # Call sessions + TTS + transcription
-│       └── analytics.py     # Dashboard data
-└── frontend/
-└── src/
-├── App.jsx          # Router and layout
-├── api.js           # API client
-├── components/
-│   └── Sidebar.jsx
-└── pages/
-├── Dashboard.jsx
-├── Agent.jsx
-├── Products.jsx
-├── Customers.jsx
-└── CallLogs.jsx
 
+    sales-ai/
+    ├── backend/
+    │   ├── main.py              # FastAPI entry point
+    │   ├── database.py          # MongoDB connection
+    │   ├── models.py            # Pydantic schemas
+    │   ├── agent.py             # Groq conversation logic
+    │   ├── seed.py              # Demo data seeder
+    │   └── routes/
+    │       ├── products.py      # Product CRUD
+    │       ├── customers.py     # Customer CRUD
+    │       ├── calls.py         # Call sessions + TTS + transcription
+    │       └── analytics.py     # Dashboard data
+    └── frontend/
+        └── src/
+            ├── App.jsx          # Router and layout
+            ├── api.js           # API client
+            ├── components/
+            │   └── Sidebar.jsx
+            └── pages/
+                ├── Dashboard.jsx
+                ├── Agent.jsx
+                ├── Products.jsx
+                ├── Customers.jsx
+                └── CallLogs.jsx
 ## Setup
 
 ### Prerequisites
