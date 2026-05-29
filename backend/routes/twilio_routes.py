@@ -63,10 +63,15 @@ def get_or_create_session(call_sid, phone=None):
 async def incoming_call(request: Request):
     form = await request.form()
     call_sid = form.get("CallSid")
-    phone = form.get("From")
+    phone = form.get("To")
+
+    print(f"Incoming call - CallSid: {call_sid}, Phone: {phone}")
+    print(f"Form data: {dict(form)}")
 
     session = get_or_create_session(call_sid, phone)
     opening = session["opening"] if session else "Hello, I am calling about a special offer."
+
+    print(f"Opening: {opening}")
 
     response = VoiceResponse()
     response.say(opening, voice="Polly.Joanna")
@@ -129,6 +134,8 @@ async def respond(request: Request):
 async def make_call(phone: str = Form(...)):
     if not twilio_client:
         return {"error": "Twilio not configured"}
+
+    print(f"Creating call to {phone} with webhook {BASE_URL}/twilio/call")
 
     call = twilio_client.calls.create(
         to=phone,
