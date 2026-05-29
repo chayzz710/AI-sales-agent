@@ -41,7 +41,7 @@ export default function Agent() {
     const speak = async (text, onDone) => {
         setStatus('speaking')
         try {
-            const res = await fetch(`http://localhost:8000/calls/speak?text=${encodeURIComponent(text)}`)
+            const res = await fetch(`ai-sales-agent-production-5a92.up.railway.app/calls/speak?text=${encodeURIComponent(text)}`)
             const blob = await res.blob()
             const url = URL.createObjectURL(blob)
             const audio = new Audio(url)
@@ -75,7 +75,7 @@ export default function Agent() {
             formData.append('audio', blob, 'recording.webm')
 
             try {
-                const res = await axios.post('http://localhost:8000/calls/transcribe', formData)
+                const res = await axios.post('ai-sales-agent-production-5a92.up.railway.app/calls/transcribe', formData)
                 const text = res.data.text?.trim()
 
                 if (!text) {
@@ -348,7 +348,7 @@ export default function Agent() {
                             if (!phone) return alert('Select a customer first')
                             const formData = new FormData()
                             formData.append('phone', phone)
-                            const res = await fetch('http://localhost:8000/twilio/make-call', {
+                            const res = await fetch('ai-sales-agent-production-5a92.up.railway.app/twilio/make-call', {
                                 method: 'POST',
                                 body: formData
                             })

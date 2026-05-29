@@ -3,7 +3,7 @@ import axios from 'axios'
 //creating one axios instance pointing at the backend and making fuctions i.e, wrapper around an API call 
 
 const api = axios.create({
-    baseURL: 'http://localhost:8000'
+    baseURL: 'ai-sales-agent-production-5a92.up.railway.app'
 })
 
 // Products
