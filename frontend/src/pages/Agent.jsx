@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react'
 import { getCustomers, getProducts, startCall, sendMessage, endCall } from '../api'
-import { Phone, PhoneOff, Mic, MicOff } from 'lucide-react'
+import { Phone, PhoneOff, Mic, MicOff, PhoneCall } from 'lucide-react'
 import axios from 'axios'
 
 
@@ -326,6 +326,45 @@ export default function Agent() {
                     <p className="text-sm text-gray-600 leading-relaxed">{callSummary.summary}</p>
                 </div>
             )}
+
+            {/* Twilio Phone Call */}
+            <div className="bg-white rounded-xl border border-gray-200 p-5 mt-5">
+                <h2 className="text-sm font-medium text-gray-700 mb-3">Make a Real Phone Call</h2>
+                <p className="text-xs text-gray-400 mb-3">Calls the customer's actual phone number via Twilio</p>
+                <div className="flex gap-3">
+                    <select
+                        id="twilio-customer"
+                        className="flex-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300"
+                    >
+                        <option value="">Select customer</option>
+                        {customers.map(c => (
+                            <option key={c.id} value={c.phone}>{c.name} — {c.phone}</option>
+                        ))}
+                    </select>
+                    <button
+                        onClick={async () => {
+                            const select = document.getElementById('twilio-customer')
+                            const phone = select.value
+                            if (!phone) return alert('Select a customer first')
+                            const formData = new FormData()
+                            formData.append('phone', phone)
+                            const res = await fetch('http://localhost:8000/twilio/make-call', {
+                                method: 'POST',
+                                body: formData
+                            })
+                            const data = await res.json()
+                            if (data.status === 'calling') {
+                                alert(`Calling ${phone}...`)
+                            } else {
+                                alert('Failed: ' + JSON.stringify(data))
+                            }
+                        }}
+                        className="flex items-center gap-2 px-4 py-2 bg-emerald-500 text-white text-sm font-medium rounded-lg hover:bg-emerald-600"
+                    >
+                        <PhoneCall size={16} /> Call Now
+                    </button>
+                </div>
+            </div>
         </div>
     )
 }
